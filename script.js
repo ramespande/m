@@ -32,15 +32,20 @@ document.addEventListener("DOMContentLoaded", () => {
     heart.className = "float-heart";
     heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
+    // Random horizontal + vertical start
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+    heart.style.top = Math.random() * 100 + "vh";
+
+    // Slight sideways drift
+    const drift = Math.random() * 60 - 30;
+    heart.style.setProperty("--drift", drift + "px");
+
+    heart.style.animationDuration = 5 + Math.random() * 3 + "s";
 
     heartLayer.appendChild(heart);
 
-    setTimeout(() => heart.remove(), 7000);
+    setTimeout(() => heart.remove(), 8000);
   }
-
-  setInterval(spawnFloatHeart, 500);
 
   /* 💥 Explosion hearts */
   function spawnBlastHeart() {
