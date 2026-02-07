@@ -56,11 +56,11 @@ button {
 
 @keyframes floatUp {
   from {
-    transform: translateY(0);
+    transform: translate(0, 0);
     opacity: 1;
   }
   to {
-    transform: translateY(-110vh);
+    transform: translate(var(--drift), -120vh);
     opacity: 0;
   }
 }
