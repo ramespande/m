@@ -1,4 +1,4 @@
-// Moving "No" button
+// Move "No" button
 function moveNo() {
   const btn = document.getElementById("noBtn");
   const x = Math.random() * 200 - 100;
@@ -8,57 +8,41 @@ function moveNo() {
 
 // YES clicked
 function yesClicked() {
-  // Clear screen
-  document.body.innerHTML = `
-    <div style="
-      text-align:center;
-      margin-top:120px;
-      font-family: Arial, sans-serif;
-    ">
-      <h1>YAYYYYY 🥹❤️</h1>
-      <p>You just made me the happiest person alive.</p>
-      <p>Happy Valentine’s Day 💘</p>
-    </div>
+  document.getElementById("mainCard").innerHTML = `
+    <h1>YAYYYYY 🥹❤️</h1>
+    <p>You just made me the happiest person alive.</p>
+    <p>Happy Valentine’s Day 💘</p>
   `;
 
   // Heart blast
-  for (let i = 0; i < 80; i++) {
-    setTimeout(createBlastHeart, i * 30);
+  for (let i = 0; i < 90; i++) {
+    setTimeout(createHeart, i * 20);
   }
 }
 
-// ❤️ Heart blast logic
-const hearts = ["❤️", "💖", "💕", "💘", "💗"];
+// ❤️ Heart creation
+const heartLayer = document.getElementById("heart-layer");
+const heartEmojis = ["❤️", "💖", "💕", "💘", "💗"];
 
-function createBlastHeart() {
+function createHeart() {
   const heart = document.createElement("div");
-  heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-  heart.style.position = "fixed";
+  heart.className = "heart";
+  heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+  const angle = Math.random() * Math.PI * 2;
+  const distance = Math.random() * 300 + 100;
+
+  const x = Math.cos(angle) * distance + "px";
+  const y = Math.sin(angle) * distance + "px";
+
+  heart.style.setProperty("--x", x);
+  heart.style.setProperty("--y", y);
+
   heart.style.left = "50%";
   heart.style.top = "50%";
   heart.style.fontSize = Math.random() * 20 + 20 + "px";
-  heart.style.pointerEvents = "none";
 
-  const angle = Math.random() * 2 * Math.PI;
-  const distance = Math.random() * 300 + 100;
+  heartLayer.appendChild(heart);
 
-  const x = Math.cos(angle) * distance;
-  const y = Math.sin(angle) * distance;
-
-  heart.animate(
-    [
-      { transform: "translate(0, 0)", opacity: 1 },
-      { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
-    ],
-    {
-      duration: 1500,
-      easing: "ease-out"
-    }
-  );
-
-  document.body.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 1600);
+  setTimeout(() => heart.remove(), 1500);
 }
