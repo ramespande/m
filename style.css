@@ -32,3 +32,16 @@ button:first-child {
 #noBtn {
   background: #ccc;
 }
+
+.hearts::before {
+  content: "💖 💕 💘 💗 💓";
+  position: fixed;
+  top: 0;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
