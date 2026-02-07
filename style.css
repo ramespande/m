@@ -1,16 +1,12 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
+  height: 100vh;
   background: linear-gradient(to right, #ff9a9e, #fad0c4);
   font-family: Arial, sans-serif;
   overflow: hidden;
-  height: 100vh;
 }
 
-/* Main card */
+/* Card */
 .container {
   position: absolute;
   top: 50%;
@@ -20,17 +16,11 @@ body {
   padding: 40px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  animation: pop 0.8s ease;
   z-index: 5;
 }
 
-@keyframes pop {
-  from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
-  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-}
-
-.buttons button {
+/* Buttons */
+button {
   padding: 15px 30px;
   margin: 10px;
   border: none;
@@ -39,16 +29,16 @@ body {
   cursor: pointer;
 }
 
-.buttons button:first-child {
-  background: #ff4d6d;
-  color: white;
-}
-
 #noBtn {
   background: #ccc;
 }
 
-/* ❤️ Heart blast layer */
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
+}
+
+/* ❤️ Heart explosion layer */
 #heart-layer {
   position: fixed;
   inset: 0;
@@ -58,11 +48,11 @@ body {
 
 .heart {
   position: absolute;
-  font-size: 24px;
-  animation: blast 1.5s ease-out forwards;
+  font-size: 28px;
+  animation: explode 1.4s ease-out forwards;
 }
 
-@keyframes blast {
+@keyframes explode {
   from {
     transform: translate(0, 0) scale(1);
     opacity: 1;
