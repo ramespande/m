@@ -8,33 +8,57 @@ function moveNo() {
 
 // YES clicked
 function yesClicked() {
+  // Clear screen
   document.body.innerHTML = `
-    <div style="text-align:center; margin-top:100px;">
+    <div style="
+      text-align:center;
+      margin-top:120px;
+      font-family: Arial, sans-serif;
+    ">
       <h1>YAYYYYY 🥹❤️</h1>
       <p>You just made me the happiest person alive.</p>
       <p>Happy Valentine’s Day 💘</p>
     </div>
   `;
+
+  // Heart blast
+  for (let i = 0; i < 80; i++) {
+    setTimeout(createBlastHeart, i * 30);
+  }
 }
 
-// ❤️ Floating hearts logic
-const heartContainer = document.getElementById("heart-container");
-const hearts = ["💖", "💕", "💘", "💗", "💓"];
+// ❤️ Heart blast logic
+const hearts = ["❤️", "💖", "💕", "💘", "💗"];
 
-function createHeart() {
+function createBlastHeart() {
   const heart = document.createElement("div");
-  heart.classList.add("heart");
   heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+  heart.style.position = "fixed";
+  heart.style.left = "50%";
+  heart.style.top = "50%";
+  heart.style.fontSize = Math.random() * 20 + 20 + "px";
+  heart.style.pointerEvents = "none";
 
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+  const angle = Math.random() * 2 * Math.PI;
+  const distance = Math.random() * 300 + 100;
 
-  heartContainer.appendChild(heart);
+  const x = Math.cos(angle) * distance;
+  const y = Math.sin(angle) * distance;
+
+  heart.animate(
+    [
+      { transform: "translate(0, 0)", opacity: 1 },
+      { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
+    ],
+    {
+      duration: 1500,
+      easing: "ease-out"
+    }
+  );
+
+  document.body.appendChild(heart);
 
   setTimeout(() => {
     heart.remove();
-  }, 6000);
+  }, 1600);
 }
-
-// spawn hearts continuously
-setInterval(createHeart, 400);
