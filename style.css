@@ -6,7 +6,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* Card */
+/* Main card */
 .container {
   position: fixed;
   top: 50%;
@@ -17,6 +17,7 @@ body {
   border-radius: 20px;
   text-align: center;
   z-index: 5;
+  max-width: 90vw;
 }
 
 /* Buttons */
@@ -46,7 +47,7 @@ button {
   z-index: 2;
 }
 
-/* 💕 Floating hearts */
+/* Floating hearts */
 .float-heart {
   position: fixed;
   bottom: -30px;
@@ -55,17 +56,11 @@ button {
 }
 
 @keyframes floatUp {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-120vh);
-    opacity: 0;
-  }
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-120vh); opacity: 0; }
 }
 
-/* 💥 Explosion hearts */
+/* Explosion hearts */
 .blast-heart {
   position: fixed;
   font-size: 26px;
@@ -73,12 +68,24 @@ button {
 }
 
 @keyframes explode {
-  from {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
+  from { transform: translate(0, 0) scale(1); opacity: 1; }
   to {
     transform: translate(var(--x), var(--y)) scale(1.4);
     opacity: 0;
   }
+}
+
+/* 📸 4-photo memory grid */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.memory-grid img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  object-fit: cover;
 }
